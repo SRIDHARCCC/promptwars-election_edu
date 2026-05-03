@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import { MessageSquare, Send } from 'lucide-react';
 import { GoogleGenAI } from '@google/genai';
+import DOMPurify from 'dompurify';
 
 function Assistant() {
   const [messages, setMessages] = useState([
@@ -9,10 +10,11 @@ function Assistant() {
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleSend = async () => {
-    if (!input.trim()) return;
+  const handleSend = useCallback(async () => {
+    const sanitizedInput = DOMPurify.sanitize(input.trim());
+    if (!sanitizedInput) return;
     
-    const userMessage = input.trim();
+    const userMessage = sanitizedInput;
     setMessages(prev => [...prev, { text: userMessage, isBot: false }]);
     setInput('');
     setIsLoading(true);
@@ -38,7 +40,7 @@ function Assistant() {
     } finally {
       setIsLoading(false);
     }
-  };
+  }, [input]);
 
   return (
     <section aria-labelledby="assistant-heading">

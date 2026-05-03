@@ -1,6 +1,8 @@
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
+import { getPerformance } from "firebase/performance";
+import { getAnalytics } from "firebase/analytics";
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
@@ -15,3 +17,14 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 export const db = getFirestore(app);
+
+// Initialize Performance Monitoring and Analytics
+// Note: In a real environment, conditionally initialize Analytics based on environment
+let perf = null;
+let analytics = null;
+if (typeof window !== 'undefined' && import.meta.env.VITE_FIREBASE_API_KEY) {
+  perf = getPerformance(app);
+  analytics = getAnalytics(app);
+}
+
+export { perf, analytics };

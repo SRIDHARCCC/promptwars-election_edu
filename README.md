@@ -103,3 +103,5 @@ The app will be available at `http://localhost:5173`.
 
 ## 📈 Potential Impact
 CivicPath is built to handle high concurrency during peak election hours, ensuring a smooth and reliable experience for millions of voters.
+
+---

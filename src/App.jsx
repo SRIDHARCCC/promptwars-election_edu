@@ -1,9 +1,11 @@
+import React, { Suspense } from 'react';
 import { Routes, Route, Link, useLocation } from 'react-router-dom';
-import { MapPin, MessageSquare, ShieldCheck, Calendar, Home } from 'lucide-react';
-import HomeDashboard from './pages/HomeDashboard';
-import BoothMap from './pages/BoothMap';
-import Assistant from './pages/Assistant';
-import Verification from './pages/Verification';
+import { MapPin, MessageSquare, ShieldCheck, Home } from 'lucide-react';
+
+const HomeDashboard = React.lazy(() => import('./pages/HomeDashboard'));
+const BoothMap = React.lazy(() => import('./pages/BoothMap'));
+const Assistant = React.lazy(() => import('./pages/Assistant'));
+const Verification = React.lazy(() => import('./pages/Verification'));
 
 function App() {
   const location = useLocation();
@@ -41,12 +43,14 @@ function App() {
       </header>
 
       <main className="main-content">
-        <Routes>
-          <Route path="/" element={<HomeDashboard />} />
-          <Route path="/booth" element={<BoothMap />} />
-          <Route path="/assistant" element={<Assistant />} />
-          <Route path="/verify" element={<Verification />} />
-        </Routes>
+        <Suspense fallback={<div style={{ padding: '24px', textAlign: 'center' }}>Loading application modules...</div>}>
+          <Routes>
+            <Route path="/" element={<HomeDashboard />} />
+            <Route path="/booth" element={<BoothMap />} />
+            <Route path="/assistant" element={<Assistant />} />
+            <Route path="/verify" element={<Verification />} />
+          </Routes>
+        </Suspense>
       </main>
     </div>
   );
