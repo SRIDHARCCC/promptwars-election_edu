@@ -41,10 +41,10 @@ function Assistant() {
   };
 
   return (
-    <div>
+    <section aria-labelledby="assistant-heading">
       <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '24px' }}>
-        <MessageSquare size={32} color="#4F46E5" />
-        <h1>Smart Assistant</h1>
+        <MessageSquare size={32} color="#4F46E5" aria-hidden="true" />
+        <h1 id="assistant-heading">Smart Assistant</h1>
       </div>
       <p style={{ marginBottom: '24px' }}>
         Ask me anything about election laws, candidate affidavits, or registration steps.
@@ -72,13 +72,14 @@ function Assistant() {
             value={input}
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={(e) => e.key === 'Enter' && handleSend()}
+            aria-label="Ask the assistant a question"
           />
-          <button className="btn-primary" onClick={handleSend} disabled={isLoading} style={{ padding: '8px 16px', borderRadius: '50%' }}>
-            <Send size={18} />
+          <button className="btn-primary" onClick={handleSend} disabled={isLoading} style={{ padding: '8px 16px', borderRadius: '50%' }} aria-label="Send message">
+            <Send size={18} aria-hidden="true" />
           </button>
         </div>
       </div>
-    </div>
+    </section>
   );
 }
 

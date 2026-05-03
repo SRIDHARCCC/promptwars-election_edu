@@ -27,10 +27,10 @@ function Verification() {
   };
 
   return (
-    <div>
+    <section aria-labelledby="verification-heading">
       <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '24px' }}>
-        <ShieldCheck size={32} color="#F59E0B" />
-        <h1>Identity Verification</h1>
+        <ShieldCheck size={32} color="#F59E0B" aria-hidden="true" />
+        <h1 id="verification-heading">Identity Verification</h1>
       </div>
       <p style={{ marginBottom: '24px' }}>
         Upload a clear picture of your Voter ID. We will use Google Cloud Vision AI to securely extract and verify your details.
@@ -49,28 +49,32 @@ function Verification() {
           </div>
         ) : (
           <>
-            <div 
+            <label 
+              htmlFor="id-upload"
               style={{ 
                 border: '2px dashed var(--surface-border)', 
                 borderRadius: '12px', 
                 padding: '40px 20px',
                 marginBottom: '24px',
                 background: 'rgba(0,0,0,0.2)',
-                cursor: 'pointer'
+                cursor: 'pointer',
+                display: 'block'
               }}
-              onClick={() => document.getElementById('id-upload').click()}
+              onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') document.getElementById('id-upload').click(); }}
+              tabIndex="0"
+              aria-label="Upload Voter ID"
             >
-              <Upload size={48} color="var(--text-secondary)" style={{ margin: '0 auto 16px' }} />
-              <h3>{file ? file.name : "Click or drag to upload your Voter ID"}</h3>
+              <Upload size={48} color="var(--text-secondary)" style={{ margin: '0 auto 16px' }} aria-hidden="true" />
+              <h3>{file ? file.name : "Click or press Enter to upload your Voter ID"}</h3>
               <p style={{ margin: 0, fontSize: '0.9rem' }}>Supports JPG, PNG (Max 5MB)</p>
               <input 
                 id="id-upload" 
                 type="file" 
                 accept="image/*" 
-                style={{ display: 'none' }} 
+                style={{ opacity: 0, position: 'absolute', zIndex: -1 }} 
                 onChange={handleFileChange}
               />
-            </div>
+            </label>
 
             <button 
               className="btn-primary" 
@@ -83,7 +87,7 @@ function Verification() {
           </>
         )}
       </div>
-    </div>
+    </section>
   );
 }
 

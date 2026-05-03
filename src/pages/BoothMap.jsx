@@ -12,10 +12,10 @@ function BoothMap() {
   if (!isLoaded) return <div className="glass-panel">Loading Google Maps...</div>;
 
   return (
-    <div>
+    <section aria-labelledby="boothmap-heading">
       <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '24px' }}>
-        <MapPin size={32} color="#10B981" />
-        <h1>Where's my Booth?</h1>
+        <MapPin size={32} color="#10B981" aria-hidden="true" />
+        <h1 id="boothmap-heading">Where's my Booth?</h1>
       </div>
       <p style={{ marginBottom: '24px' }}>
         Find the nearest polling station based on your registered address. 
@@ -38,7 +38,7 @@ function BoothMap() {
           <Marker position={center} />
         </GoogleMap>
       </div>
-    </div>
+    </section>
   );
 }
 

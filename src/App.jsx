@@ -19,17 +19,20 @@ function App() {
     <div className="app-container">
       <header className="app-header">
         <div className="app-logo">CivicPath</div>
-        <nav className="nav-links">
+        <nav className="nav-links" aria-label="Main Navigation">
           {navItems.map((item) => {
             const Icon = item.icon;
+            const isActive = location.pathname === item.path;
             return (
               <Link
                 key={item.path}
                 to={item.path}
-                className={`nav-link ${location.pathname === item.path ? 'active' : ''}`}
+                className={`nav-link ${isActive ? 'active' : ''}`}
                 style={{ display: 'flex', alignItems: 'center', gap: '8px' }}
+                aria-current={isActive ? 'page' : undefined}
+                aria-label={`Go to ${item.label}`}
               >
-                <Icon size={18} />
+                <Icon size={18} aria-hidden="true" />
                 {item.label}
               </Link>
             );

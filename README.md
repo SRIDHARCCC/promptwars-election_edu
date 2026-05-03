@@ -9,6 +9,15 @@ The election process can be complex and overwhelming. CivicPath aims to simplify
 
 ---
 
+## 🎯 Problem Statement Alignment
+CivicPath explicitly addresses the core challenges of voter education and participation:
+1. **Challenge: Finding Polling Locations** ➡️ **Solution:** "Where's my Booth?" map integration.
+2. **Challenge: Understanding Complex Election Laws** ➡️ **Solution:** Smart Assistant using Gemini AI.
+3. **Challenge: Voter ID Verification Status** ➡️ **Solution:** Identity Verification via Cloud Vision AI.
+4. **Challenge: Remembering Election Dates** ➡️ **Solution:** Key Date Sync with Google Calendar.
+
+---
+
 ## 🚀 Key Features
 
 ### 📍 "Where's my Booth?"
